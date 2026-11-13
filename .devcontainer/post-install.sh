@@ -67,7 +67,8 @@ fi
 # Install kubebuilder
 if ! command -v kubebuilder &> /dev/null; then
   echo "Installing kubebuilder..."
-  curl -Lo /usr/local/bin/kubebuilder "https://go.kubebuilder.io/dl/latest/linux/${ARCH}"
+  # curl -Lo /usr/local/bin/kubebuilder "https://go.kubebuilder.io/dl/latest/linux/${ARCH}"
+  curl -Lo /usr/local/bin/kubebuilder "https://github.com/kubernetes-sigs/kubebuilder/releases/download/v4.4.0/kubebuilder_linux_${ARCH}"
   chmod +x /usr/local/bin/kubebuilder
   echo "kubebuilder installed successfully"
 fi
