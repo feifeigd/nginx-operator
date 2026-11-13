@@ -32,16 +32,13 @@ import (
 
 var _ = Describe("Nginx Controller", func() {
 	Context("When reconciling a resource", func() {
-		const (
-			resourceName      = "test-resource"
-			resourceNamespace = "default"
-		)
+		const resourceName = "test-resource"
 
 		ctx := context.Background()
 
 		typeNamespacedName := types.NamespacedName{
 			Name:      resourceName,
-			Namespace: resourceNamespace,
+			Namespace: "default", // TODO(user):Modify as needed
 		}
 		nginx := &webv1.Nginx{}
 
@@ -52,7 +49,7 @@ var _ = Describe("Nginx Controller", func() {
 				resource := &webv1.Nginx{
 					ObjectMeta: metav1.ObjectMeta{
 						Name:      resourceName,
-						Namespace: resourceNamespace,
+						Namespace: "default",
 					},
 					// TODO(user): Specify other spec details if needed.
 				}
