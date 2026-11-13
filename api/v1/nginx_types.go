@@ -30,6 +30,10 @@ type NginxSpec struct {
 
 	// Foo is an example field of Nginx. Edit nginx_types.go to remove/update
 	Foo string `json:"foo,omitempty"`
+	// 副本数量
+	// +kubebuilder:validation:Minimum=1
+	// +bubebuilder:default=2
+	Replicas*int32 `json:"replicas,omitempty"`
 }
 
 // NginxStatus defines the observed state of Nginx.
@@ -43,10 +47,14 @@ type NginxStatus struct {
 
 // Nginx is the Schema for the nginxes API.
 type Nginx struct {
-	metav1.TypeMeta   `json:",inline"`
+	// 资源 API 类型和版本
+	metav1.TypeMeta `json:",inline"`
+	// 名称、命名空间、标签等
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   NginxSpec   `json:"spec,omitempty"`
+	// 用户期望的状态
+	Spec NginxSpec `json:"spec,omitempty"`
+	// Operator 观察到的实际状态
 	Status NginxStatus `json:"status,omitempty"`
 }
 
