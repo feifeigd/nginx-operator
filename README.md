@@ -32,6 +32,10 @@ make install
 **Deploy the Manager to the cluster with the image specified by `IMG`:**
 
 ```sh
+# <some-registry> = registry.d7kj.com/hello
+# hello 是在 registry.d7kj.com 创建的项目
+# 例如:
+# make deploy IMG=registry.d7kj.com/hello/nginx-operator:v0.1 
 make deploy IMG=<some-registry>/nginx-operator:tag
 ```
 
