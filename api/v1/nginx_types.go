@@ -28,18 +28,28 @@ type NginxSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// Foo is an example field of Nginx. Edit nginx_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
 	// 副本数量
 	// +kubebuilder:validation:Minimum=1
 	// +bubebuilder:default=2
-	Replicas*int32 `json:"replicas,omitempty"`
+	Replicas *int32 `json:"replicas,omitempty"`
+
+	// Nginx 镜像
+	// +kubebuilder:default="nginx:1.27"
+	Image string `json:"image,omitempty"`
+
+	// Nginx 服务端口
+	// +kubebuilder:default=80
+	// +kubebuilder:validation:Minimum=1
+	// +kubebuilder:validation:Maximum=65535
+	Port int32 `json:"port,omitempty"`
 }
 
 // NginxStatus defines the observed state of Nginx.
 type NginxStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
+
+	ReadyReplicas int32 `json:"readyReplicas,omitempty"`
 }
 
 // +kubebuilder:object:root=true

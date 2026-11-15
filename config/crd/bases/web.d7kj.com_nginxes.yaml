@@ -37,15 +37,31 @@ spec:
           metadata:
             type: object
           spec:
-            description: NginxSpec defines the desired state of Nginx.
+            description: 用户期望的状态
             properties:
-              foo:
-                description: Foo is an example field of Nginx. Edit nginx_types.go
-                  to remove/update
+              image:
+                default: nginx:1.27
+                description: Nginx 镜像
                 type: string
+              port:
+                default: 80
+                description: Nginx 服务端口
+                format: int32
+                maximum: 65535
+                minimum: 1
+                type: integer
+              replicas:
+                description: 副本数量
+                format: int32
+                minimum: 1
+                type: integer
             type: object
           status:
-            description: NginxStatus defines the observed state of Nginx.
+            description: Operator 观察到的实际状态
+            properties:
+              readyReplicas:
+                format: int32
+                type: integer
             type: object
         type: object
     served: true
